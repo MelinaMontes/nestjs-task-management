@@ -30,6 +30,7 @@ export class TasksService {
     const result = await this.tasksRepository.delete(id);
    console.log(result);
   }
+
   async updateTaskStatus(id: string, status: TaskStatus): Promise <Task>{
 
     const task =await this.getTaskById(id);
@@ -40,8 +41,7 @@ export class TasksService {
   }
   
   getTasks(filterDto: GetTasksFilterDto): Promise<Task[]>{
-    return
-
+    return this.tasksRepository.getTasks(filterDto);
   }
 
 }

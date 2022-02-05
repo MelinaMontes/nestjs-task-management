@@ -35,8 +35,6 @@ export class TasksController {
     return this.tasksService.updateTaskStatus(id, status);
   }
 
-
-
   @Get()
   getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Task[]> {
    
