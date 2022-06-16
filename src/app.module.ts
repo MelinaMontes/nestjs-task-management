@@ -8,16 +8,15 @@ import { AuthModule } from './auth/auth.module';
     TasksModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host:'localhost',
+      host: 'localhost',
       port: 5432,
       username: 'melina',
       password: 'melina',
       database: 'task-management',
       autoLoadEntities: true,
       synchronize: true,
-      }),
+    }),
     AuthModule,
-
   ],
 })
 export class AppModule {}

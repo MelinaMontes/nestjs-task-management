@@ -10,10 +10,10 @@ import { Task } from './task.entity';
 export class TasksService {
   constructor(
     @InjectRepository(TasksRepository)
-    private tasksRepository: TasksRepository
-  ){}
+    private tasksRepository: TasksRepository,
+  ) {}
 
-  async getTaskById(id: string): Promise < Task> {
+  async getTaskById(id: string): Promise<Task> {
     const found = await this.tasksRepository.findOne(id);
 
     if (!found) {
@@ -26,22 +26,20 @@ export class TasksService {
     return this.tasksRepository.createTask(createTaskDto);
   }
 
-  async deleteTaskById(id: string):Promise <void> {
+  async deleteTaskById(id: string): Promise<void> {
     const result = await this.tasksRepository.delete(id);
-   console.log(result);
+    console.log(result);
   }
 
-  async updateTaskStatus(id: string, status: TaskStatus): Promise <Task>{
-
-    const task =await this.getTaskById(id);
+  async updateTaskStatus(id: string, status: TaskStatus): Promise<Task> {
+    const task = await this.getTaskById(id);
 
     task.status = status;
     await this.tasksRepository.save(task);
     return task;
   }
-  
-  getTasks(filterDto: GetTasksFilterDto): Promise<Task[]>{
+
+  getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
     return this.tasksRepository.getTasks(filterDto);
   }
-
 }
